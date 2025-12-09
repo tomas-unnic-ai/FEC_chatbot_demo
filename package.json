@@ -1,0 +1,18 @@
+{
+  "name": "fec-chatbot-demo",
+  "version": "1.0.0",
+  "description": "Chatbot demo con frontend y backend separados",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:frontend"
+  }
+}
