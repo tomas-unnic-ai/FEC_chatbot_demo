@@ -12,7 +12,6 @@ export const chatController = {
         timestamp: new Date().toISOString()
       });
     } catch (error) {
-      console.error('Error en chatController.init:', error);
       res.status(500).json({ 
         error: 'Error al inicializar la conversación',
         message: error.message 
@@ -36,7 +35,6 @@ export const chatController = {
         timestamp: new Date().toISOString()
       });
     } catch (error) {
-      console.error('Error en chatController.sendMessage:', error);
       res.status(500).json({ 
         error: 'Error interno del servidor',
         message: error.message 

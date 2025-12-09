@@ -1,3 +1,5 @@
+import { API_URL } from '../config';
+
 interface Message {
   id: string;
   text: string;
@@ -61,10 +63,12 @@ export class Chatbot {
     });
     
     // Branding
-    const branding = document.createElement('p');
-    branding.className = 'text-gray-500 text-xs mt-8 text-center';
+    const branding = document.createElement('button');
+    branding.className = 'text-gray-400 text-base mt-8 px-6 py-3 rounded-full border border-gray-700 bg-gray-900 hover:bg-gray-800 hover:border-gray-600 transition-colors';
     branding.textContent = 'unnic.';
-    
+    branding.addEventListener('click', () => {
+      window.open('https://unnic.ai', '_blank');
+    });
     // Ensamblar
     inputContainer.appendChild(this.inputBox);
     inputContainer.appendChild(this.sendButton);
@@ -97,7 +101,7 @@ export class Chatbot {
     
     try {
       // Llamar al backend
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,7 +116,6 @@ export class Chatbot {
       const data = await response.json();
       this.addMessage(data.response, false);
     } catch (error) {
-      console.error('Error al enviar mensaje:', error);
       this.addMessage('Error al conectar con el servidor. Por favor, intenta de nuevo.', false);
     } finally {
       // Rehabilitar input

@@ -1,5 +1,6 @@
 import './style.css';
 import { Chatbot } from './components/Chatbot';
+import { API_URL } from './config';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -9,16 +10,9 @@ app.appendChild(chatbot.render());
 async function init() 
 {
     try {
-      const response = await fetch('http://localhost:3001/api/init');
-      const data = await response.json();
-      console.log('Backend conectado:', data);
-      
-      // O cualquier otra llamada inicial que necesites
-      // Por ejemplo, cargar historial de conversación:
-      // const historyResponse = await fetch('http://localhost:3001/api/chat/history');
-      // const history = await historyResponse.json();
+      await fetch(`${API_URL}/api/chat/init`);
     } catch (error) {
-      console.error('Error al conectar con el backend:', error);
+        // Error silencioso
     }
 }
 
